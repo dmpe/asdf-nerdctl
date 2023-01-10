@@ -1,0 +1,16 @@
+#!/bin/bash
+
+[ -z "${ASDF_INSTALL_VERSION+x}" ] && echo "ASDF_INSTALL_VERSION is required" && exit 1
+
+github_repo="https://github.com/containerd/nerdctl/releases"
+
+_download() {
+    local version="$1"
+    local bin_install_path=$2
+    
+    local download_url="$github_repo/download/v${version}/nerdctl-${version}-linux-amd64.tar.gz"
+
+    curl -Lo "$bin_install_path/nerdctl-${version}-linux-amd64.tar.gz" "$download_url"
+}
+
+_download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
