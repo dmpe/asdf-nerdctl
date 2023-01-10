@@ -1,1 +1,13 @@
-# asdf-nerdcli
+# asdf-nerdctl
+
+`nerdctl` <https://github.com/containerd/nerdctl/> plugin for the asdf version manager.
+
+## Install
+
+```
+asdf plugin-add nerdctl https://github.com/dmpe/asdf-nerdctl.git
+```
+
+## Use
+
+Check out the asdf readme for instructions.
