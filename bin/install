@@ -22,7 +22,7 @@ _install_nerdctl() {
   echo "Unpacking nerdctl to bin directory"
   tar -C "${_install_path}/bin" -zxf "${ASDF_DOWNLOAD_PATH}/nerdctl-${_version}-linux-amd64.tar.gz" nerdctl
 
-  chmod +x "${_install_path}/bin"
+  chmod +x "${_install_path}"/bin
 }
 
 _install_nerdctl "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"

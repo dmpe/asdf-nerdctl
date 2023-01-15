@@ -11,11 +11,12 @@ source "${plugin_dir}/lib/utils.bash"
 
 _download() {
   local version="$1"
-  local bin_install_path=$2
+  local bin_install_path="$2"
+  local artifact="nerdctl-${version}-linux-amd64.tar.gz"
 
-  local download_url="$GH_REPO/download/v${version}/nerdctl-${version}-linux-amd64.tar.gz"
+  local download_url="$GH_REPO/download/v${version}/${artifact}"
 
-  curl -Lo "$bin_install_path/nerdctl-${version}-linux-amd64.tar.gz" "$download_url"
+  curl -Lo "$bin_install_path/${artifact}" "$download_url" || fail "Could not download $download_url"
 }
 
 _download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
