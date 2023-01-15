@@ -19,5 +19,4 @@ _download() {
   curl -Lo "$bin_install_path/${artifact}" "$download_url" || fail "Could not download $download_url"
 }
 
-_download "1.1.0" "/home/jm/Documents/asdf-nerdctl"
-# _download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
+_download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
