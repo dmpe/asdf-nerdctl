@@ -13,4 +13,4 @@ source "${plugin_dir}/lib/utils.bash"
 # find all tag_name": "v0.11.2", and remove all beta versions - then sort
 versions=$(curl "${curl_opts[@]}" "${GH_API_REPO}/releases" | grep -oE "tag_name\": *\".{1,15}\"," | awk '!/beta/' | sed 's/tag_name\": *\"v//;s/\",//' | _sort_versions)
 
-echo $versions
+echo "$versions"

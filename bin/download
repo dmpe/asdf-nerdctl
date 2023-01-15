@@ -10,12 +10,12 @@ plugin_dir=$(dirname "$(dirname "$current_script_path")")
 source "${plugin_dir}/lib/utils.bash"
 
 _download() {
-    local version="$1"
-    local bin_install_path=$2
+  local version="$1"
+  local bin_install_path=$2
 
-    local download_url="$github_repo/download/v${version}/nerdctl-${version}-linux-amd64.tar.gz"
+  local download_url="$GH_REPO/download/v${version}/nerdctl-${version}-linux-amd64.tar.gz"
 
-    curl -Lo "$bin_install_path/nerdctl-${version}-linux-amd64.tar.gz" "$download_url"
+  curl -Lo "$bin_install_path/nerdctl-${version}-linux-amd64.tar.gz" "$download_url"
 }
 
 _download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
