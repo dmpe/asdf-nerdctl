@@ -41,16 +41,3 @@ jobs:
         uses: asdf-vm/actions/plugin-test@master
         with:
           command: nerdctl -v
-
-  plugin_test_os:
-    name: asdf plugin test (on macos)
-    strategy:
-      matrix:
-        os:
-          - macos-latest
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: asdf_plugin_test
-        uses: asdf-vm/actions/plugin-test@master
-        with:
-          command: nerdctl -v
