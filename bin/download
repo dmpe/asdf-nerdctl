@@ -1,16 +1,24 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 [ -z "${ASDF_INSTALL_VERSION+x}" ] && echo "ASDF_INSTALL_VERSION is required" && exit 1
 
-github_repo="https://github.com/containerd/nerdctl/releases"
+current_script_path=${BASH_SOURCE[0]}
+plugin_dir=$(dirname "$(dirname "$current_script_path")")
+
+# shellcheck source=../lib/utils.bash
+source "${plugin_dir}/lib/utils.bash"
+
+ar=$(arch)
 
 _download() {
-    local version="$1"
-    local bin_install_path=$2
-    
-    local download_url="$github_repo/download/v${version}/nerdctl-${version}-linux-amd64.tar.gz"
+  local version="$1"
+  local bin_install_path="$2"
+  local artifact="nerdctl-${version}-${PLATFORM}-${ar}.tar.gz"
 
-    curl -Lo "$bin_install_path/nerdctl-${version}-linux-amd64.tar.gz" "$download_url"
+  local download_url="$GH_REPO/releases/download/v${version}/${artifact}"
+
+  curl -Lo "$bin_install_path/${artifact}" "$download_url" || fail "Could not download $download_url"
 }
 
 _download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"

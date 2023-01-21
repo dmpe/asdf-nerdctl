@@ -2,6 +2,8 @@
 
 `nerdctl` <https://github.com/containerd/nerdctl/> plugin for the asdf version manager.
 
+Tested on Ubuntu x86_64 platform.
+
 ## Install
 
 ```

@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+jobs:
+  plugin_test_debian_containers:
+    name: asdf plugin test (on ubuntu)
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.container }}
+    strategy:
+      matrix:
+        container:
+          - ubuntu:latest
+    steps:
+      - name: install commands such as git and curl
+        run: apt update && apt install git curl -y
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@master
+        with:
+          command: nerdctl -v
+
+  plugin_test_rpm_containers:
+    name: asdf plugin test (on fedora)
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.container }}
+    strategy:
+      matrix:
+        container:
+          - fedora:rawhide
+    steps:
+      - name: install commands such as git and curl
+        run: dnf update -y && dnf install -y git curl
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@master
+        with:
+          command: nerdctl -v
