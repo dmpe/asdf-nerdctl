@@ -8,11 +8,18 @@ GH_API_REPO="https://api.github.com/repos/containerd/nerdctl"
 TOOL_NAME="nerdctl"
 TOOL_TEST="-v"
 PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
-ARCH=$(uname -m)
 
 fail() {
   echo -e "asdf-$TOOL_NAME: $*"
   exit 1
+}
+
+arch() {
+  arch="$(uname -m)"
+  if [[ $arch == "x86_64" ]]; then
+    arch="amd64"
+  fi
+  echo $arch
 }
 
 curl_opts=(-fsSL)

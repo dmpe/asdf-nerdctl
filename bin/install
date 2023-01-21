@@ -11,6 +11,8 @@ plugin_dir=$(dirname "$(dirname "$current_script_path")")
 # shellcheck source=../lib/utils.bash
 source "${plugin_dir}/lib/utils.bash"
 
+ar=$(arch)
+
 _install_nerdctl() {
   local _install_type=$1
   local _version=$2
@@ -19,8 +21,8 @@ _install_nerdctl() {
   echo "Creating bin directory"
   mkdir -p "${_install_path}/bin"
 
-  echo "Unpacking nerdctl to bin directory"
-  tar -C "${_install_path}/bin" -zxf "${ASDF_DOWNLOAD_PATH}/nerdctl-${_version}-linux-amd64.tar.gz" nerdctl
+  echo "Unpacking ${TOOL_NAME} to bin directory"
+  tar -C "${_install_path}/bin" -zxf "${ASDF_DOWNLOAD_PATH}/${TOOL_NAME}-${_version}-${PLATFORM}-${ar}.tar.gz" "${TOOL_NAME}"
 
   chmod +x "${_install_path}"/bin
 }
