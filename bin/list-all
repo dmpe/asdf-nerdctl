@@ -11,6 +11,4 @@ plugin_dir=$(dirname "$(dirname "$current_script_path")")
 source "${plugin_dir}/lib/utils.bash"
 
 # find all tag_name": "v0.11.2", and remove all beta versions - then sort
-vers=$( list_all_versions | sort_versions)
-
-echo "$vers"
+list_all_versions | sort_versions | xargs echo 
